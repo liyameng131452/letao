@@ -1,0 +1,14 @@
+$(function(){
+  //禁用进度条的小圆圈
+  NProgress.configure({showSpinner:false});
+  //发送ajax请求时出现进度条
+  $(document).ajaxStart(function(){
+    NProgress.start();
+  });
+  //ajax结束时进度条消失
+  $(document).ajaxStop(function(){
+    setTimeout(function(){
+      NProgress.done();
+    },500)
+  });
+})

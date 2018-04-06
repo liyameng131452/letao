@@ -11,4 +11,32 @@ $(function(){
       NProgress.done();
     },500)
   });
+  //二级分类切换功能
+  $('.category').click(function(){
+    $(this).next().stop().slideToggle();
+  });
+  //顶部菜单栏显示切换功能
+  $('.icon_menu').click(function(){
+    $('.lt_aside').toggleClass('hidemenu');
+    $('.lt_main').toggleClass('hidemenu');
+    $('.lt_topbar').toggleClass('hidemenu');
+  });
+  //模态框显示与隐藏功能
+  $('.icon_logout').click(function(){
+    $('#logoutModal').modal('show');
+  });
+  //退出功能的实现
+  $('#logoutBtn').click(function(){
+    $.ajax({
+      url:'/employee/employeeLogout',
+      type:'get',
+      dataType:'json',
+      success:function(info){
+        console.log(info);
+        if(info.success){
+          location.href="login.html";
+        }
+      }
+    })
+  })
 })

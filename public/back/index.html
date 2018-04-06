@@ -4,9 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
+  <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <title>乐淘商城首页练习</title>
 </head>
 <body>
-  <div>我是后台管理系统</div>
+  <!-- 侧边栏模块开始 -->
+  <div class="lt_aside">
+    <div class="brand">
+      <a href="#">黑马19期</a>
+    </div>
+    <div class="user">
+      <img src="./images/default.png" alt="">
+      <p>超级管理员</p>
+    </div>
+    <div class="nav">
+      <ul>
+        <li>
+          <a href="#" class="current"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
+          <ul class="child" style="display:none;">
+            <li><a href="#">一级分类</a></li>
+            <li><a href="#">二级分类</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- 主体模块部分 -->
+  <div class="lt_main">
+    <div class="lt_topbar">
+      <a href="#" class="pull-left icon_menu"><i class="glyphicon glyphicon-align-justify"></i></a>
+      <a href="#" class="pull-right icon_logout"><i class="glyphicon glyphicon-log-out"></i></a>
+    </div>
+    <div class="container-fluid">
+      <ol class="breadcrumb">
+          <li><a href="#">管理系统</a></li>
+          <li class="active">首页</li>
+      </ol>
+    </div>
+  </div>
+  <!-- 模态框部分 -->
+  <div class="modal fade" id="logoutModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          <h4 class="modal-title">温馨提示</h4>
+        </div>
+        <div class="modal-body">
+          <p class="red"><i class="glyphicon glyphicon-info-sign">你确定要退出管理系统么？</i></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="logoutBtn">退出</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+  <script src="./lib/jquery/jquery.js"></script>
+  <script src="./lib/bootstrap/js/bootstrap.js"></script>
+  <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+  <script src="./lib/nprogress/nprogress.js"></script>
+  <script src="./js/common.js"></script>
 </body>
 </html>

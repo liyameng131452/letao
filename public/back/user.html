@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
   <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
   <link rel="stylesheet" href="./css/common.css">
-  <title>乐淘商城首页练习</title>
+  <title>乐淘商城用户页练习</title>
 </head>
 <body>
   <!-- 侧边栏模块开始 -->
@@ -23,7 +23,7 @@
     <div class="nav">
       <ul>
         <li>
-          <a href="user.html"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a>
+          <a href="user.html" class="current"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a>
         </li>
         <li>
           <a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
@@ -52,13 +52,47 @@
       </ol>
       <!-- 内容部分 -->
       <div class="lt_content">
-        <div class="echarts_1 pull-left"></div>
-        <div class="echarts_2 pull-right"></div>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>用户名</th>
+              <th>手机号</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+           <!-- table渲染部分 -->
+          </tbody>
+        </table>
+        <div class="text-right">
+          <ul id="pagintor">
+          </ul>
+        </div>
       </div>
-
     </div>
   </div>
   <!-- 模态框部分 -->
+    <!-- 禁用启用的模态框 -->
+    <div class="modal fade" id="userModal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+              <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div class="modal-body">
+              <p class="red"><i class="glyphicon glyphicon-info-sign">你确定要执行此操作么？</i></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary" id="confirmBtn">确定</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- 退出的模态框 -->
   <div class="modal fade" id="logoutModal">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -76,7 +110,24 @@
       </div>
     </div>
   </div>
-
+  <!-- 模板引擎部分 -->
+  <script type="text/html" id="userTmp">
+    {{each rows v i}}
+    <tr>
+        <td>{{(page-1)*size+i+1}}</td>
+        <td>{{v.username}}</td>
+        <td>{{v.mobile}}</td>
+        <td>{{v.isDelete===1?"正常":"禁用"}}</td>
+        <td data-id="{{v.id}}">
+          {{if v.isDelete===1}}
+            <button class="btn btn-danger">禁用</button>
+          {{else}}
+            <button class="btn btn-success">启用</button>
+          {{/if}}
+        </td>
+    </tr>
+    {{/each}}
+  </script>
 
 
  
@@ -84,8 +135,9 @@
   <script src="./lib/bootstrap/js/bootstrap.js"></script>
   <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
   <script src="./lib/nprogress/nprogress.js"></script>
-  <script src="./lib/echarts/echarts.min.js"></script>
+  <script src="./lib/artTemplate/template-web.js"></script>
+  <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
   <script src="./js/common.js"></script>
-  <script src="./js/index.js"></script>
+  <script src="./js/user.js"></script>
 </body>
 </html>

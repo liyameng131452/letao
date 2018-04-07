@@ -38,5 +38,20 @@ $(function(){
         }
       }
     })
-  })
+  });
+  //退出功能的实现
+  if(location.href.indexOf('login.html')===-1){
+    $.ajax({
+      url:'/employee/checkRootLogin',
+      data:'get',
+      success:function(info){
+        if(info.success){
+          console.log('登录了');
+        }
+        if(info.error===400){
+          location.href="login.html";
+        }
+      }
+    })
+  }
 })

@@ -45,6 +45,7 @@ $(function(){
       url:'/employee/checkRootLogin',
       data:'get',
       success:function(info){
+        // console.log(info);
         if(info.success){
           console.log('登录了');
         }

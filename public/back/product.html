@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
   <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
   <link rel="stylesheet" href="./css/common.css">
-  <title>乐淘商城用户页练习</title>
+  <title>乐淘商城商品管理页练习</title>
 </head>
 <body>
   <!-- 侧边栏模块开始 -->
@@ -27,13 +27,13 @@
         </li>
         <li>
           <a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
-          <ul class="child">
-            <li><a href="first.html"  class="current">一级分类</a></li>
-            <li><a href="second.html">二级分类</a></li>
+          <ul class="child" style="display:none;">
+            <li><a href="first.html">一级分类</a></li>
+            <li><a href="second.html" >二级分类</a></li>
           </ul>
         </li>
         <li>
-          <a href="product.html"><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a>
+          <a href="product.html" class="current"><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a>
         </li>
       </ul>
     </div>
@@ -49,7 +49,7 @@
       <ol class="breadcrumb">
         <li><a href="#">管理系统</a></li>
         <li class="active">分类管理</li>
-        <li class="active">一级分类</li>
+        <li class="active">二级分类</li>
       </ol>
       <!-- 内容部分 -->
       <div class="lt_content">
@@ -57,13 +57,18 @@
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th width="20%">序号</th>
-              <th width="80%">一级分类名</th>
+              <th width="10%">序号</th>
+              <th width="25%">商品名称</th>
+              <th width="25%">商品描述</th>
+              <th width="10%">商品库存</th>
+              <th width="10%">商品尺寸</th>
+              <th width="10%">商品状态</th>
+              <th width="10%">操作</th>
             </tr>
           </thead>
           <tbody>
            <!-- table渲染部分 -->
-           
+            
           </tbody>
         </table>
         <div class="text-right">
@@ -74,9 +79,9 @@
     </div>
   </div>
   <!-- 模态框部分 -->
-    <!-- 禁用启用的模态框 -->
-    <div class="modal fade" id="firstModal">
-        <div class="modal-dialog modal-sm">
+    <!-- 商品管理的模态框 -->
+    <div class="modal fade" id="productModal">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
@@ -85,7 +90,43 @@
             <div class="modal-body">
               <form id="form">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="请输入一级分类" name="categoryName">
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                      <span id="droptext">请选择二级分类</span> 
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <!-- 一级分类下拉渲染 -->
+                    </ul>
+                  </div>
+                  <input type="hidden" name="categoryId">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="请输入商品名称" name="brandName">
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" placeholder="请输入商品描述"></textarea>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="请输入商品库存" name="brandName">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="请输入商品尺码" name="brandName">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="请输入商品原价" name="brandName">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="请输入商品价格" name="brandName">
+                </div>
+                <div class="form-group">
+                  <label for="fileUpload" class="btn btn-default">
+                    上传图片
+                  </label>
+                  <input type="file" name="pic1" id="fileUpload" data-url="/category/addSecondCategoryPic" style="display:none">
+                </div>
+                <div class="form-group" id="imgBox">
+                  <input type="hidden" name="brandLogo">
                 </div>
               </form>              
             </div>
@@ -115,15 +156,31 @@
     </div>
   </div>
   <!-- 模板引擎部分 -->
-  <script type="text/html" id="firstTmp">
+  <script type="text/html" id="productTmp">
     {{each rows v i}}
-        <tr>
-          <td>{{i+1}}</td>
-          <td>{{v.categoryName}}</td>
-        </tr>
+      <tr>
+        <td>{{(page-1)*size+(i+1)}}</td>
+        <td>{{v.proName}}</td>
+        <td>{{v.proDesc}}</td>
+        <td>{{v.num}}</td>
+        <td>{{v.size}}</td>
+        <td>{{v.statu===1?"已上架":"已下架"}}</td>
+        <td>
+          {{if v.statu===1}}
+            <button class="btn btn-danger">下架</button>
+          {{else}}
+            <button class="btn btn-success">上架</button>
+          {{/if}}
+        </td>
+      </tr>
     {{/each}}
   </script>
-
+<!-- 一级下拉分类的模板 -->
+  <script type="text/html" id="dropdownMenu">
+    {{each rows v i}}
+      <li><a href="#" data-id="{{v.id}}">{{v.categoryName}}</a></li>
+    {{/each}}
+  </script>
  
   <script src="./lib/jquery/jquery.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.js"></script>
@@ -131,7 +188,9 @@
   <script src="./lib/nprogress/nprogress.js"></script>
   <script src="./lib/artTemplate/template-web.js"></script>
   <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+  <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+  <script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
   <script src="./js/common.js"></script>
-  <script src="./js/first.js"></script>
+  <script src="./js/product.js"></script>
 </body>
 </html>

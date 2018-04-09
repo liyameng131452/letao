@@ -89,6 +89,7 @@
             </div>
             <div class="modal-body">
               <form id="form">
+                <!-- 二级分类表单 -->
                 <div class="form-group">
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
@@ -96,37 +97,47 @@
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                      <!-- 一级分类下拉渲染 -->
+                      <!-- 二级分类下拉渲染 -->
                     </ul>
                   </div>
-                  <input type="hidden" name="categoryId">
+                  <input type="hidden" name="brandId">
+                  <input type="hidden" name="statu" value="1">
+                  
                 </div>
+                <!-- 商品名称表单 -->
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="请输入商品名称" name="brandName">
+                  <input type="text" class="form-control" placeholder="请输入商品名称" name="proName">
                 </div>
+                 <!-- 商品描述表单 -->
                 <div class="form-group">
-                  <textarea class="form-control" rows="3" placeholder="请输入商品描述"></textarea>
+                  <textarea class="form-control" rows="3" placeholder="请输入商品描述" name="proDesc"></textarea>
                 </div>
+                 <!-- 商品库存表单 -->
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="请输入商品库存" name="brandName">
+                  <input type="text" class="form-control" placeholder="请输入商品库存" name="num">
                 </div>
+                 <!-- 商品尺码表单 -->
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="请输入商品尺码" name="brandName">
+                  <input type="text" class="form-control" placeholder="请输入商品尺码" name="size">
                 </div>
+                 <!-- 商品原价表单 -->
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="请输入商品原价" name="brandName">
+                  <input type="text" class="form-control" placeholder="请输入商品原价" name="oldPrice ">
                 </div>
+                 <!-- 商品价格表单 -->
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="请输入商品价格" name="brandName">
+                  <input type="text" class="form-control" placeholder="请输入商品价格" name="price">
                 </div>
+                 <!-- 上传文件表单 -->
                 <div class="form-group">
                   <label for="fileUpload" class="btn btn-default">
                     上传图片
                   </label>
-                  <input type="file" name="pic1" id="fileUpload" data-url="/category/addSecondCategoryPic" style="display:none">
+                  <input type="file" multiple name="pic1" id="fileUpload" data-url="/product/addProductPic" style="display:none">
                 </div>
+                 <!-- 上传图片表单 -->
                 <div class="form-group" id="imgBox">
-                  <input type="hidden" name="brandLogo">
+                  <input type="hidden" name="picStatus">
                 </div>
               </form>              
             </div>
@@ -175,10 +186,10 @@
       </tr>
     {{/each}}
   </script>
-<!-- 一级下拉分类的模板 -->
+<!-- 二级下拉分类的模板 -->
   <script type="text/html" id="dropdownMenu">
     {{each rows v i}}
-      <li><a href="#" data-id="{{v.id}}">{{v.categoryName}}</a></li>
+      <li><a href="#" data-id="{{v.id}}">{{v.brandName}}</a></li>
     {{/each}}
   </script>
  

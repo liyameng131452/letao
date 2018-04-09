@@ -11,9 +11,20 @@ a{
 .product{
   padding:10px;
 }
-.product li{
+.product-item{
   width:48%;
   float:left;
   padding:10px;
   border:1px solid #ccc;
+  text-align: center;
+  margin-bottom:10px;
+}
+.product-item .now{
+  color:#FF3636;
+}
+.product-item .old{
+  text-decoration: line-through;
+}
+.product-item:nth-child(odd){
+  margin-right:4%;
 }

@@ -154,17 +154,17 @@ $(function(){
 
         }
       },
-      oldPrice:{
-        validators:{
-          notEmpty:{
-            message:'请输入商品原价'
-          }
-        }
-      },
       price:{
         validators:{
           notEmpty:{
             message:'请输入商品价格'
+          }
+        }
+      },
+      oldPrice:{
+        validators:{
+          notEmpty:{
+            message:'请输入商品原价'
           }
         }
       },

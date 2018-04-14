@@ -88,6 +88,7 @@ img{
 }
 .lt_footer a p{
   margin:0;
+  color:#fff;
 }
 .lt_main{
   width:100%;
@@ -133,4 +134,22 @@ img{
 }
 .product-item:nth-child(odd){
   margin-right:4%;
+}
+.size span{
+  display: inline-block;
+  height:25px;
+  line-height: 25px;
+  background-color: #eee;
+  padding:0 5px;
+  border:1px solid #ccc;
+  font-size: 14px;
+  margin-bottom:5px;
+}
+.size span.current{
+  background-color: blue;
+  color:#fff;
+}
+.num span{
+  font-size: 12px;
+  color:#666;
 }

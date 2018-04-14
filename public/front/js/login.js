@@ -1,0 +1,36 @@
+$(function(){
+  $('#btnlogin').click(function(){
+    var username=$('input[name="username"]').val();
+    var password=$('input[name=password]').val();
+    if(!username){
+      mui.toast('请输入用户名');
+      return
+    }
+    if(!password){
+      mui.toast('请输入密码');
+      return 
+    }
+    $.ajax({
+      url:'/user/login',
+      type:'post',
+      data:{
+        username:username,
+        password:password
+      },
+      success:function(info){
+        console.log(info);
+        if(info.error){
+          mui.toast('用户名或者密码错误');
+        }
+        if(info.success){
+          if(location.search.indexOf('reUrl')!==-1){
+           //说明是从别的页跳转过来的
+           location.href=location.search.replace('?reUrl=','');
+          }else{
+            location.href='user.html';
+          }
+        }
+      }
+    })
+  })
+})
